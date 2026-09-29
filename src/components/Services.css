@@ -1,8 +1,12 @@
-/* Tall track: scrolling through it steps through the services */
+/* Tall track: scrolling through it steps through the services. Uses svh (falls back to vh)
+   so its height stays fixed while the mobile browser's address bar shows/hides mid-scroll —
+   otherwise the track (and so the whole page) resizes under the user's thumb, which is what
+   causes the page to visibly jump/re-scroll near the bottom on phones. */
 .svc-track {
   position: relative;
   width: 100%;
   height: 400vh;
+  height: 400svh;
   background: #16090c;
 }
 
@@ -280,5 +284,6 @@
 
   .svc-track {
     height: 350vh;
+    height: 350svh;
   }
 }
