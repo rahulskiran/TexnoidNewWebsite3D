@@ -1,0 +1,306 @@
+.faq-section {
+  position: relative;
+  width: 100%;
+  background: #faf8f6;
+  color: #14110f;
+  padding: 6rem 2.8rem;
+}
+
+.faq-container {
+  max-width: 1540px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Left: gradient feature card, stays in view while the list scrolls */
+.faq-left {
+  position: sticky;
+  top: 2rem;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem;
+  border-radius: 32px;
+  color: #ffffff;
+  background: #16090c;
+}
+
+.faq-left::before,
+.faq-left::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.faq-left::before {
+  inset: -30%;
+  background:
+    radial-gradient(40% 42% at 20% 25%, rgba(225, 29, 46, 0.85) 0%, transparent 70%),
+    radial-gradient(36% 40% at 85% 20%, rgba(255, 138, 61, 0.65) 0%, transparent 70%),
+    radial-gradient(42% 46% at 75% 90%, rgba(194, 51, 122, 0.65) 0%, transparent 70%);
+  filter: blur(28px);
+  animation: faqBlobs 20s ease-in-out infinite alternate;
+}
+
+.faq-left::after {
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: linear-gradient(160deg, #000 0%, transparent 70%);
+  mask-image: linear-gradient(160deg, #000 0%, transparent 70%);
+}
+
+@keyframes faqBlobs {
+  from { transform: translate3d(-4%, -3%, 0) scale(1); }
+  to { transform: translate3d(4%, 4%, 0) scale(1.12); }
+}
+
+.faq-eyebrow {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.faq-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.faq-title {
+  margin: 2rem 0 1rem;
+  font-family: var(--font-body);
+  font-size: clamp(2.4rem, 4.6vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.faq-sub {
+  max-width: 22rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 2rem;
+}
+
+.faq-cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #ffffff;
+  color: #14110f;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.9rem 1.8rem;
+  min-height: 3rem;
+  border-radius: 9999px;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.faq-cta:hover {
+  background: #14110f;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Right: open rows separated by hairlines, numbered */
+.faq-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.faq-item {
+  position: relative;
+  border-bottom: 1px solid rgba(20, 17, 15, 0.14);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid rgba(20, 17, 15, 0.14);
+}
+
+/* red progress line under the open row */
+.faq-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #ff8a3d, #e11d2e);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-item[data-open="true"]::after {
+  width: 100%;
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.7rem 0;
+  color: #14110f;
+  text-align: left;
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.faq-q:focus-visible {
+  outline: 2px solid #e11d2e;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.faq-num {
+  flex-shrink: 0;
+  width: 2.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(20, 17, 15, 0.4);
+  transition: color 0.25s ease;
+}
+
+.faq-q-text {
+  flex: 1;
+  font-size: clamp(1.1rem, 1.7vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.faq-q:hover .faq-q-text {
+  transform: translateX(4px);
+}
+
+.faq-item[data-open="true"] .faq-q-text,
+.faq-item[data-open="true"] .faq-num,
+.faq-q:hover .faq-num {
+  color: #e11d2e;
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(20, 17, 15, 0.2);
+  color: #14110f;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.faq-item[data-open="true"] .faq-icon {
+  background: linear-gradient(145deg, #ff8a3d, #e11d2e);
+  border-color: transparent;
+  color: #ffffff;
+  transform: rotate(45deg);
+}
+
+.faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.faq-a > p {
+  overflow: hidden;
+  margin: 0;
+  padding-left: 3.7rem;
+  max-width: 46rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(20, 17, 15, 0.7);
+}
+
+.faq-item[data-open="true"] .faq-a {
+  grid-template-rows: 1fr;
+}
+
+.faq-item[data-open="true"] .faq-a > p {
+  padding-bottom: 1.7rem;
+}
+
+@media (max-width: 900px) {
+  .faq-section {
+    padding: 3.5rem 1.5rem 4rem;
+  }
+
+  .faq-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .faq-left {
+    position: relative;
+    top: 0;
+    min-height: 0;
+    padding: 1.75rem;
+    border-radius: 26px;
+  }
+
+  .faq-title {
+    margin-top: 1.25rem;
+  }
+
+  .faq-cta {
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .faq-q {
+    gap: 0.9rem;
+    padding: 1.25rem 0;
+  }
+
+  .faq-num {
+    width: 1.6rem;
+  }
+
+  .faq-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .faq-a > p {
+    padding-left: 2.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-left::before {
+    animation: none;
+  }
+
+  .faq-a,
+  .faq-icon,
+  .faq-item::after,
+  .faq-q-text {
+    transition: none;
+  }
+}

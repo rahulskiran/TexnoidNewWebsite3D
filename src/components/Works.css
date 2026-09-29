@@ -1,0 +1,136 @@
+.wrk-section {
+  width: 100%;
+  background: #faf8f6;
+  color: #14110f;
+  padding: 5rem 2.8rem 6rem;
+}
+
+.wrk-container {
+  max-width: 1540px;
+  margin: 0 auto;
+}
+
+.wrk-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.wrk-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e11d2e;
+}
+
+.wrk-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+  gap: 2rem;
+  margin: 1.5rem 0 3.5rem;
+}
+
+.wrk-title {
+  font-family: var(--font-body);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.wrk-sub {
+  max-width: 22rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding-bottom: 0.6rem;
+}
+
+.wrk-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0 0.6rem;
+  color: #14110f;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.wrk-all svg {
+  color: #e11d2e;
+}
+
+.wrk-all:hover {
+  color: #e11d2e;
+  gap: 0.8rem;
+}
+
+.wrk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 1.5rem;
+}
+
+.wrk-img-wrap {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f3e7e5;
+}
+
+.wrk-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wrk-card:hover .wrk-img-wrap img {
+  transform: scale(1.05);
+}
+
+.wrk-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: baseline;
+  padding: 1rem 0.9rem 0;
+}
+
+.wrk-meta h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.wrk-meta span {
+  font-size: 0.85rem;
+  color: rgba(20, 17, 15, 0.55);
+}
+
+@media (max-width: 900px) {
+  .wrk-section {
+    padding: 3.5rem 1.5rem 4rem;
+  }
+
+  .wrk-head {
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .wrk-title {
+    grid-column: 1 / -1;
+  }
+
+  .wrk-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* keep the heading clear of the fixed mobile header when jumped to from the hero */
+#works { scroll-margin-top: 4rem; }

@@ -1,0 +1,405 @@
+.inc-section {
+  width: 100%;
+  background: #faf8f6;
+  color: #14110f;
+  padding: 5rem 2.8rem 6rem;
+}
+
+.inc-container {
+  max-width: 1540px;
+  margin: 0 auto;
+}
+
+.inc-title {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.inc-sub {
+  text-align: center;
+  max-width: 560px;
+  margin: 1rem auto 3.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(20, 17, 15, 0.65);
+}
+
+.inc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* ---------- Card shell ---------- */
+.inc-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 30%;
+  position: relative;
+  height: 460px;
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    radial-gradient(120% 80% at 50% 110%, #ffd9b0 0%, transparent 60%),
+    linear-gradient(180deg, #fdf3e7 0%, #f7e2cc 100%);
+  border: 1px solid rgba(232, 106, 28, 0.15);
+  padding: 2rem 1.5rem 0;
+  text-align: center;
+  perspective: 1000px;
+  transition: box-shadow 0.4s ease;
+}
+
+.inc-card:hover {
+  box-shadow: 0 30px 60px -20px rgba(232, 106, 28, 0.35);
+}
+
+/* soft light that follows the pointer */
+.inc-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(360px circle at var(--gx) var(--gy), rgba(255, 255, 255, 0.75), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.inc-card:hover .inc-glow,
+.inc-card.is-active .inc-glow {
+  opacity: 1;
+}
+
+.inc-card-title {
+  position: relative;
+  z-index: 5;
+  font-family: var(--font-body);
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.inc-stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 5.5rem;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s ease-out;
+}
+
+.inc-card:not(:hover) .inc-stage {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* shared glossy material */
+.inc-pg-1,
+.inc-layer-front {
+  background: linear-gradient(145deg, #ffb26b 0%, #ff8a3d 50%, #e86a1c 100%);
+}
+
+/* ---------- Card 1: pages ---------- */
+.inc-pages {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(8deg) rotateY(-14deg);
+}
+
+.inc-pg {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 46%;
+  height: 78%;
+  margin-left: -30%;
+  border-radius: 22px 22px 0 0;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inc-pg-3 {
+  background: linear-gradient(145deg, #ffe0bd, #ffcf9c);
+  transform: translate3d(0, 0, -60px);
+  height: 64%;
+  box-shadow: 0 20px 30px -12px rgba(120, 50, 10, 0.25);
+}
+
+.inc-pg-2 {
+  background: linear-gradient(145deg, #ffc78f, #ffaa5e);
+  transform: translate3d(0, 0, -30px);
+  height: 71%;
+  box-shadow: 0 20px 30px -12px rgba(120, 50, 10, 0.3);
+}
+
+.inc-pg-1 {
+  height: 78%;
+  transform: translate3d(0, 0, 0);
+  box-shadow: 0 26px 40px -14px rgba(120, 50, 10, 0.5);
+  animation: incFloat 5s ease-in-out infinite;
+}
+
+.inc-card:hover .inc-pg-3,
+.inc-card.is-active .inc-pg-3 { transform: translate3d(70px, -10px, -90px); }
+.inc-card:hover .inc-pg-2,
+.inc-card.is-active .inc-pg-2 { transform: translate3d(36px, -5px, -45px); }
+.inc-card:hover .inc-pg-1,
+.inc-card.is-active .inc-pg-1 { transform: translate3d(-8px, 0, 30px); }
+
+.inc-pg-bar {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  right: 14px;
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.inc-pg-block {
+  position: absolute;
+  top: 40px;
+  left: 14px;
+  right: 14px;
+  height: 34%;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.inc-pg-line {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 44px;
+  height: 10px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.inc-pg-line.short {
+  bottom: 22px;
+  right: 45%;
+}
+
+/* ---------- Card 2: exploded layers ---------- */
+.inc-layers {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(18deg) rotateY(-12deg);
+}
+
+.inc-layer {
+  position: absolute;
+  left: 50%;
+  width: 76%;
+  margin-left: -38%;
+  border-radius: 22px 22px 0 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inc-layer-back {
+  bottom: -2px;
+  height: 66%;
+  background: linear-gradient(145deg, #ffe0bd, #ffcf9c);
+  transform: translate3d(0, 0, -70px);
+  box-shadow: 0 24px 34px -14px rgba(120, 50, 10, 0.25);
+}
+
+.inc-layer-mid {
+  bottom: -2px;
+  height: 58%;
+  background: linear-gradient(145deg, #ffc78f, #ffaa5e);
+  transform: translate3d(0, 0, -35px);
+  box-shadow: 0 24px 34px -14px rgba(120, 50, 10, 0.3);
+}
+
+.inc-layer-front {
+  bottom: -2px;
+  height: 50%;
+  transform: translate3d(0, 0, 0);
+  box-shadow: 0 30px 44px -14px rgba(120, 50, 10, 0.55);
+  animation: incFloat 5.5s ease-in-out infinite;
+}
+
+.inc-card:hover .inc-layer-back,
+.inc-card.is-active .inc-layer-back { transform: translate3d(0, -46px, -110px); }
+.inc-card:hover .inc-layer-mid,
+.inc-card.is-active .inc-layer-mid { transform: translate3d(0, -24px, -55px); }
+.inc-card:hover .inc-layer-front,
+.inc-card.is-active .inc-layer-front { transform: translate3d(0, 4px, 30px); }
+
+.inc-thumb {
+  position: absolute;
+  left: 8%;
+  top: 18%;
+  width: 22%;
+  height: 60%;
+  border-radius: 16px;
+  background: #ffffff;
+  transform: translateZ(26px);
+  box-shadow: 0 10px 18px -6px rgba(120, 50, 10, 0.35);
+}
+
+.inc-line {
+  position: absolute;
+  left: 38%;
+  top: 46%;
+  width: 20%;
+  height: 12px;
+  border-radius: 99px;
+  background: #ffffff;
+  transform: translateZ(18px);
+}
+
+.inc-line.long {
+  top: 22%;
+  width: 46%;
+  height: 16px;
+}
+
+/* ---------- Card 3: floating pieces ---------- */
+.inc-floats {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(6deg) rotateY(-10deg);
+}
+
+.inc-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 99px;
+  font-weight: 600;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inc-chip-brand {
+  left: 8%;
+  top: 8%;
+  padding: 0.7rem 1.4rem;
+  background: #ffffff;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  box-shadow: 0 18px 30px -12px rgba(20, 17, 15, 0.3);
+  transform: translateZ(40px);
+  animation: incFloat 6s ease-in-out infinite;
+}
+
+.inc-chip-stars {
+  right: 8%;
+  top: 28%;
+  gap: 0.15rem;
+  padding: 0.65rem 1.1rem;
+  background: #ffffff;
+  color: #a1266f;
+  box-shadow: 0 18px 30px -12px rgba(20, 17, 15, 0.3);
+  transform: translateZ(70px);
+  animation: incFloat 5s ease-in-out infinite reverse;
+}
+
+.inc-chip-btn {
+  left: 8%;
+  top: 52%;
+  padding: 1rem 1.9rem;
+  background: linear-gradient(145deg, #c2337a, #7a1f5c);
+  color: #ffffff;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  box-shadow: 0 24px 34px -12px rgba(122, 31, 92, 0.55);
+  transform: translateZ(90px);
+  animation: incFloat 5.5s ease-in-out infinite;
+}
+
+.inc-icon-row {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 8%;
+  display: flex;
+  justify-content: space-between;
+  transform-style: preserve-3d;
+}
+
+.inc-tile {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: #14110f;
+  box-shadow: 0 16px 24px -10px rgba(20, 17, 15, 0.3);
+  transform: translateZ(50px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inc-tile:nth-child(even) {
+  transform: translateZ(70px);
+}
+
+.inc-card:hover .inc-chip-brand,
+.inc-card.is-active .inc-chip-brand { transform: translateZ(70px); }
+.inc-card:hover .inc-chip-stars,
+.inc-card.is-active .inc-chip-stars { transform: translateZ(110px); }
+.inc-card:hover .inc-chip-btn,
+.inc-card.is-active .inc-chip-btn { transform: translateZ(130px); }
+.inc-card:hover .inc-tile,
+.inc-card.is-active .inc-tile { transform: translateZ(90px); }
+.inc-card:hover .inc-tile:nth-child(even),
+.inc-card.is-active .inc-tile:nth-child(even) { transform: translateZ(115px); }
+
+@keyframes incFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
+}
+
+/* Only float while the section is on screen (keeps scrolling smooth) */
+.inc-section:not(.in-view) .inc-pg-1,
+.inc-section:not(.in-view) .inc-layer-front,
+.inc-section:not(.in-view) .inc-chip {
+  animation-play-state: paused;
+}
+
+/* ---------- Responsive and motion ---------- */
+@media (max-width: 900px) {
+  .inc-section {
+    padding: 3.5rem 1.5rem 4rem;
+  }
+
+  .inc-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .inc-card {
+    height: 400px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inc-pg-1,
+  .inc-layer-front,
+  .inc-chip {
+    animation: none;
+  }
+
+  .inc-stage {
+    transition: none;
+  }
+}
+
+/* Scroll-driven mode (touch): the stage follows the scroll almost instantly, glow stays visible */
+.inc-card.inc-scroll .inc-stage {
+  transition: transform 0.15s linear;
+}

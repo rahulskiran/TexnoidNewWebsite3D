@@ -1,0 +1,58 @@
+/* Full bleed: no padding at all, so the collage runs edge to edge. The columns are pulled
+   past the top and bottom edges (see .pg-col margins) so the panels are cropped there too. */
+.pg-section { position: relative; width: 100%; background: #faf8f6; overflow: hidden; isolation: isolate; padding: 0; }
+
+/* Light abstract background: paper base with soft ember washes */
+.pg-section::before, .pg-section::after { content: ''; position: absolute; z-index: -1; pointer-events: none; }
+.pg-section::before {
+  inset: -20%;
+  background:
+    radial-gradient(38% 42% at 18% 25%, rgba(225, 29, 46, 0.16) 0%, transparent 70%),
+    radial-gradient(34% 40% at 82% 18%, rgba(255, 140, 90, 0.2) 0%, transparent 70%),
+    radial-gradient(40% 45% at 70% 85%, rgba(225, 60, 120, 0.13) 0%, transparent 70%),
+    radial-gradient(30% 35% at 25% 90%, rgba(255, 110, 110, 0.16) 0%, transparent 70%);
+  filter: blur(30px);
+  animation: pgBlobs 22s ease-in-out infinite alternate;
+}
+.pg-section::after {
+  inset: 0;
+  background-image: radial-gradient(rgba(20, 17, 15, 0.1) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 0%, transparent 75%);
+}
+@keyframes pgBlobs {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to { transform: translate3d(3%, 3%, 0) scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) { .pg-section::before { animation: none; } }
+
+/* A genuinely fluid, full-width grid: no fixed-width canvas and no CSS transform: scale() on
+   it, so every photo renders at its real size instead of being stretched (which softened them).
+   Three columns at every screen size, including phones. */
+.pg-grid { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(6px, 1.1vw, 16px); align-items: start; }
+/* Negative top/bottom margins pull each column past the section edges, so every panel is
+   cropped at both ends instead of leaving blank space. Staggered tops keep the collage look.
+   In vw so the crop scales with the screen and still works on a phone. These have to stay
+   comfortably bigger than the parallax travel in PagesGallery.tsx, or a drifting column
+   could pull its edge inside the section and expose a gap. */
+.pg-col { display: flex; flex-direction: column; gap: clamp(6px, 1.1vw, 16px); will-change: transform; }
+.pg-col:nth-child(1) { margin: -8vw 0 -14vw; }
+.pg-col:nth-child(2) { margin: -13vw 0 -14vw; }
+.pg-col:nth-child(3) { margin: -10.5vw 0 -14vw; }
+
+/* Plain panels: card height comes from the picture's own aspect ratio (set inline), so the
+   panel is exactly the picture's size, never taller, with nothing drawn on top of it. */
+.pg-card { position: relative; width: 100%; height: auto; background: #f1efe9; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 4px rgba(20,17,15,.06), 0 12px 32px rgba(20,17,15,.14); }
+.pg-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+@media (max-width: 900px) {
+  /* On phones the three columns would each be too narrow to read, so the grid is made twice
+     the screen width and centred: the middle column fills about two thirds of the screen and
+     the outer two bleed off the sides, peeking in. The section's overflow: hidden crops them. */
+  .pg-grid { width: 200%; margin-left: -50%; }
+  /* The columns are twice as wide here, so they need a deeper bottom crop to stay overflowing
+     the section edge once the parallax has moved them. */
+  .pg-grid .pg-col { margin-bottom: -18vw; }
+  .pg-card { border-radius: 4px; box-shadow: 0 1px 3px rgba(20,17,15,.06), 0 6px 16px rgba(20,17,15,.12); }
+}

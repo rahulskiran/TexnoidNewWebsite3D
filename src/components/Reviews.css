@@ -1,0 +1,294 @@
+.rev-section {
+  position: relative;
+  width: 100%;
+  isolation: isolate;
+  /* Default palette: ember (matches the brand red) */
+  --rev-base: #16090c;
+  --rev-b1: rgba(225, 29, 46, 0.75);
+  --rev-b2: rgba(255, 120, 70, 0.5);
+  --rev-b3: rgba(190, 30, 110, 0.55);
+  --rev-b4: rgba(255, 70, 90, 0.4);
+  --rev-accent: #e11d2e;
+  background: var(--rev-base);
+  color: #ffffff;
+  padding: 6rem 0 6.5rem;
+  overflow: hidden;
+}
+
+/* Abstract background: soft drifting colour blobs plus a fine dot texture */
+.rev-section::before,
+.rev-section::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.rev-section::before {
+  inset: -20%;
+  background:
+    radial-gradient(38% 42% at 18% 25%, var(--rev-b1) 0%, transparent 70%),
+    radial-gradient(34% 40% at 82% 18%, var(--rev-b2) 0%, transparent 70%),
+    radial-gradient(40% 45% at 70% 85%, var(--rev-b3) 0%, transparent 70%),
+    radial-gradient(30% 35% at 25% 90%, var(--rev-b4) 0%, transparent 70%);
+  filter: blur(30px);
+  animation: revBlobs 22s ease-in-out infinite alternate;
+}
+
+.rev-section::after {
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 0%, transparent 75%);
+}
+
+/* Alternative palettes: pass theme="..." to <Reviews /> */
+.rev-theme-midnight {
+  --rev-base: #070b1a;
+  --rev-b1: rgba(59, 90, 246, 0.7);
+  --rev-b2: rgba(139, 92, 246, 0.55);
+  --rev-b3: rgba(14, 165, 233, 0.45);
+  --rev-b4: rgba(225, 29, 46, 0.35);
+}
+
+.rev-theme-sunset {
+  --rev-base: #1a0d05;
+  --rev-b1: rgba(249, 115, 22, 0.75);
+  --rev-b2: rgba(250, 204, 21, 0.45);
+  --rev-b3: rgba(225, 29, 46, 0.55);
+  --rev-b4: rgba(236, 72, 153, 0.4);
+}
+
+.rev-theme-orchid {
+  --rev-base: #12061a;
+  --rev-b1: rgba(168, 85, 247, 0.7);
+  --rev-b2: rgba(236, 72, 153, 0.6);
+  --rev-b3: rgba(225, 29, 46, 0.45);
+  --rev-b4: rgba(251, 146, 60, 0.35);
+}
+
+.rev-theme-aurora {
+  --rev-base: #04120f;
+  --rev-b1: rgba(16, 185, 129, 0.6);
+  --rev-b2: rgba(45, 212, 191, 0.5);
+  --rev-b3: rgba(59, 130, 246, 0.5);
+  --rev-b4: rgba(163, 230, 53, 0.3);
+}
+
+@keyframes revBlobs {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to { transform: translate3d(3%, 3%, 0) scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rev-section::before {
+    animation: none;
+  }
+}
+
+/* Centred header */
+.rev-head {
+  max-width: 900px;
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.rev-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.rev-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.rev-title {
+  margin: 1.5rem auto 0;
+  font-family: var(--font-body);
+  font-size: clamp(2.4rem, 5.5vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+/* Rows */
+.rev-row {
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.rev-track {
+  display: flex;
+  width: max-content;
+  animation: revScroll 55s linear infinite;
+}
+
+.rev-track.reverse {
+  animation-direction: reverse;
+  animation-duration: 65s;
+}
+
+.rev-row:hover .rev-track {
+  animation-play-state: paused;
+}
+
+@keyframes revScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.rev-item {
+  padding-right: 1.5rem;
+}
+
+/* Frosted card with an oversized quote mark */
+.rev-card {
+  position: relative;
+  margin: 0;
+  width: 420px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  overflow: hidden;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.rev-card::after {
+  content: '”';
+  position: absolute;
+  top: -0.9rem;
+  right: 1.5rem;
+  font-family: Georgia, serif;
+  font-size: 9rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.16);
+  pointer-events: none;
+}
+
+.rev-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.rev-stars {
+  display: inline-flex;
+  gap: 0.2rem;
+  color: #ffffff;
+}
+
+.rev-text {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  flex: 1;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+
+.rev-person {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.rev-person strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.rev-person small {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.rev-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #e11d2e;
+  font-weight: 700;
+}
+
+/* Second row uses wider cards so the two rows never line up */
+.rev-track.reverse .rev-card {
+  width: 480px;
+  min-height: 230px;
+}
+
+@media (max-width: 900px) {
+  .rev-section {
+    padding: 4rem 0 4.5rem;
+  }
+
+  .rev-head {
+    margin-bottom: 2.5rem;
+  }
+
+  .rev-card,
+  .rev-track.reverse .rev-card {
+    width: 300px;
+    min-height: 240px;
+    padding: 1.5rem;
+  }
+
+  .rev-text {
+    font-size: 1rem;
+  }
+
+  .rev-item {
+    padding-right: 1rem;
+  }
+
+  .rev-row {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Respect reduced motion: stop the loop and let people swipe instead */
+@media (prefers-reduced-motion: reduce) {
+  .rev-row {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .rev-track {
+    animation: none;
+  }
+
+  .rev-item[aria-hidden='true'] {
+    display: none;
+  }
+}

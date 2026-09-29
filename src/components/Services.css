@@ -1,0 +1,284 @@
+/* Tall track: scrolling through it steps through the services */
+.svc-track {
+  position: relative;
+  width: 100%;
+  height: 400vh;
+  background: #16090c;
+}
+
+.svc-section {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: #16090c;
+  color: #ffffff;
+  padding: 3rem 2.8rem;
+  box-sizing: border-box;
+}
+
+/* Abstract background (same ember palette as the reviews section) */
+.svc-section::before,
+.svc-section::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.svc-section::before {
+  inset: -20%;
+  background:
+    radial-gradient(38% 42% at 18% 25%, rgba(225, 29, 46, 0.75) 0%, transparent 70%),
+    radial-gradient(34% 40% at 82% 18%, rgba(255, 120, 70, 0.5) 0%, transparent 70%),
+    radial-gradient(40% 45% at 70% 85%, rgba(190, 30, 110, 0.55) 0%, transparent 70%),
+    radial-gradient(30% 35% at 25% 90%, rgba(255, 70, 90, 0.4) 0%, transparent 70%);
+  filter: blur(30px);
+  animation: svcBlobs 22s ease-in-out infinite alternate;
+}
+
+.svc-section::after {
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 0%, transparent 75%);
+}
+
+@keyframes svcBlobs {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to { transform: translate3d(3%, 3%, 0) scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-section::before {
+    animation: none;
+  }
+}
+
+.svc-container {
+  width: 100%;
+  max-width: 1540px;
+  margin: 0 auto;
+}
+
+.svc-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: clamp(2rem, 7vh, 5rem);
+}
+
+.svc-eyebrow {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.svc-intro {
+  font-size: 1.15rem;
+  line-height: 1.55;
+  max-width: 44rem;
+}
+
+.svc-body {
+  display: grid;
+  grid-template-columns: 1fr 1.55fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.svc-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 28px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.svc-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.6s ease, transform 0.9s ease;
+}
+
+.svc-image.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.svc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-bottom: 0.7rem;
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: gap 0.2s ease;
+}
+
+.svc-link:hover {
+  gap: 1.4rem;
+}
+
+.svc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.svc-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.svc-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4.5rem 1fr auto;
+  align-items: center;
+  padding: clamp(1rem, 3vh, 2rem) 0;
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.svc-num {
+  align-self: start;
+  font-size: 1.05rem;
+  opacity: 0.7;
+  padding-top: 0.4rem;
+}
+
+.svc-name {
+  font-size: clamp(1.8rem, min(4.4vw, 8vh), 4.2rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+
+.svc-item.open .svc-name,
+.svc-row:hover .svc-name {
+  opacity: 1;
+}
+
+.svc-toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.svc-item.open .svc-toggle {
+  background: #ffffff;
+  color: #e11d2e;
+  transform: rotate(45deg);
+}
+
+.svc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.svc-panel > p {
+  overflow: hidden;
+  margin: 0;
+  padding-left: 4.5rem;
+  max-width: 40rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.svc-item.open .svc-panel {
+  grid-template-rows: 1fr;
+}
+
+.svc-item.open .svc-panel > p {
+  padding-bottom: clamp(1rem, 3vh, 2rem);
+}
+
+@media (max-width: 900px) {
+  .svc-section {
+    padding: 5rem 1.5rem 1.5rem;
+    align-items: flex-start;
+  }
+
+  .svc-top,
+  .svc-body {
+    grid-template-columns: 1fr;
+  }
+
+  .svc-top {
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .svc-intro {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .svc-body {
+    gap: 1.25rem;
+  }
+
+  .svc-image-wrap {
+    aspect-ratio: 16 / 8;
+    border-radius: 20px;
+  }
+
+  .svc-link {
+    margin-top: 0.75rem;
+    padding-bottom: 0.4rem;
+    font-size: 1.15rem;
+  }
+
+  .svc-row {
+    grid-template-columns: 2.5rem 1fr auto;
+    padding: 0.85rem 0;
+  }
+
+  .svc-name {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
+
+  .svc-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .svc-panel > p {
+    padding-left: 2.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .svc-track {
+    height: 350vh;
+  }
+}
