@@ -84,7 +84,7 @@ export function App() {
 
         <Services onExplore={handleExplorePages} />
 
-        <Works onAllWorks={handleExplorePages} />
+        <Works />
 
         <Reviews />
 

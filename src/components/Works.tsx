@@ -1,9 +1,4 @@
-import { ArrowRight } from 'lucide-react';
 import './Works.css';
-
-interface WorksProps {
-  onAllWorks: () => void;
-}
 
 // Placeholder projects: swap in Texnoid's real case studies and screenshots
 const WORKS = [
@@ -13,7 +8,7 @@ const WORKS = [
   { name: 'Wildfern', type: '3D Web Experience', image: '/assets/dog_grass.jpg' },
 ];
 
-export const Works = ({ onAllWorks }: WorksProps) => (
+export const Works = () => (
   <section className="wrk-section" id="works">
     <div className="wrk-container">
       <span className="wrk-eyebrow" data-reveal>
@@ -25,9 +20,6 @@ export const Works = ({ onAllWorks }: WorksProps) => (
         <p className="wrk-sub">
           Each project is tailored to business goals and long-term scalability.
         </p>
-        <button className="wrk-all" onClick={onAllWorks}>
-          <ArrowRight size={16} /> All Works
-        </button>
       </div>
 
       <div className="wrk-grid">

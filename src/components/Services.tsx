@@ -6,25 +6,27 @@ interface ServicesProps {
   onExplore: () => void;
 }
 
+// Web Design and Web Development use AI-generated lifestyle photos (a desk setup showing the
+// relevant screen); the rest are real project screenshots from the pages-gallery section.
 const SERVICES = [
   {
     title: 'Web Design',
-    image: '/assets/colleagues_studio.jpg',
+    image: '/assets/services/web-design.jpg',
     text: 'Clean, conversion-focused interfaces and design systems, planned around your brand and your customers.',
   },
   {
     title: 'Web Development',
-    image: '/assets/chair_fashion.jpg',
+    image: '/assets/services/web-development.jpg',
     text: 'Fast, accessible, responsive websites and web apps built with React, TypeScript and modern tooling.',
   },
   {
     title: 'E-commerce',
-    image: '/assets/goat_greenery.jpg',
+    image: '/assets/gallery/project-fashion.jpg',
     text: 'Shopify and custom storefronts that load quickly, look sharp and make buying effortless.',
   },
   {
     title: '3D & Motion',
-    image: '/assets/rainbow_umbrella.jpg',
+    image: '/assets/gallery/project-bathroom.jpg',
     text: 'Interactive 3D scenes and thoughtful animation that make your site memorable without slowing it down.',
   },
 ];

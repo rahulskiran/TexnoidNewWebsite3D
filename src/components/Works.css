@@ -27,7 +27,7 @@
 
 .wrk-head {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr;
   align-items: end;
   gap: 2rem;
   margin: 1.5rem 0 3.5rem;
@@ -46,26 +46,6 @@
   font-size: 0.95rem;
   line-height: 1.5;
   padding-bottom: 0.6rem;
-}
-
-.wrk-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0 0 0.6rem;
-  color: #14110f;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: color 0.2s ease, gap 0.2s ease;
-}
-
-.wrk-all svg {
-  color: #e11d2e;
-}
-
-.wrk-all:hover {
-  color: #e11d2e;
-  gap: 0.8rem;
 }
 
 .wrk-grid {
@@ -117,7 +97,7 @@
   }
 
   .wrk-head {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr;
     gap: 1rem;
     margin-bottom: 2rem;
   }
