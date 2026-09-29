@@ -116,12 +116,7 @@ export const FooterSection = ({ onOpenBookCall, onExplorePages }: FooterSectionP
         </div>
 
         <div className="ftr-bottom">
-          <span>© {new Date().getFullYear()} Texnoid Solutions LLP. All rights reserved.</span>
-          <span className="ftr-legal">
-            <a href="#privacy">Privacy</a>
-            <a href="#terms">Terms</a>
-            <a href="#cookies">Cookies</a>
-          </span>
+          <span>© {new Date().getFullYear()} Texnoid Solutions LLP (Reg. No. ACS-5802). All rights reserved.</span>
           <button className="ftr-top" onClick={scrollToTop}>
             Back to top <ArrowUpRight size={14} />
           </button>

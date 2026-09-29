@@ -268,15 +268,6 @@
   color: rgba(243, 231, 229, 0.6);
 }
 
-.ftr-legal {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.ftr-legal a:hover {
-  color: #ffffff;
-}
-
 .ftr-top {
   display: inline-flex;
   align-items: center;
