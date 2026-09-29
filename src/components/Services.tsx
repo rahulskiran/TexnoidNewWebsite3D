@@ -6,8 +6,7 @@ interface ServicesProps {
   onExplore: () => void;
 }
 
-// Web Design and Web Development use AI-generated lifestyle photos (a desk setup showing the
-// relevant screen); the rest are real project screenshots from the pages-gallery section.
+// All four use AI-generated images matched to their service.
 const SERVICES = [
   {
     title: 'Web Design',
@@ -21,12 +20,12 @@ const SERVICES = [
   },
   {
     title: 'E-commerce',
-    image: '/assets/gallery/project-fashion.jpg',
+    image: '/assets/services/ecommerce.jpg',
     text: 'Shopify and custom storefronts that load quickly, look sharp and make buying effortless.',
   },
   {
     title: '3D & Motion',
-    image: '/assets/gallery/project-bathroom.jpg',
+    image: '/assets/services/3d-motion.jpg',
     text: 'Interactive 3D scenes and thoughtful animation that make your site memorable without slowing it down.',
   },
 ];
