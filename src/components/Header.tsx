@@ -6,6 +6,7 @@ export const Header = () => {
       <div className="header-container">
         {/* Brand Logo */}
         <div className="brand-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <img className="brand-mark" src="/assets/brand/logo-mark.png" alt="" />
           <span className="brand-name">Texnoid</span>
           <sup className="brand-trademark">™</sup>
           <span className="brand-tag">WEB AGENCY</span>

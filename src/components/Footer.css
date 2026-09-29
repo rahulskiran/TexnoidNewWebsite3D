@@ -125,11 +125,21 @@
 }
 
 .ftr-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   color: #ffffff;
   font-family: var(--font-body);
   font-size: 1.6rem;
   font-weight: 700;
   letter-spacing: -0.04em;
+}
+
+.ftr-logo-mark {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .ftr-logo sup {

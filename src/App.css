@@ -35,6 +35,14 @@
   opacity: 0.85;
 }
 
+.brand-mark {
+  width: 22px;
+  height: 22px;
+  margin-right: 0.1rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .brand-name {
   font-family: var(--font-body);
   font-size: 1.15rem;
@@ -156,6 +164,11 @@
     -webkit-backdrop-filter: blur(14px) saturate(1.4);
     backdrop-filter: blur(14px) saturate(1.4);
     border-bottom: 1px solid rgba(20, 17, 15, 0.08);
+  }
+
+  .brand-mark {
+    width: 24px;
+    height: 24px;
   }
 
   .brand-name {

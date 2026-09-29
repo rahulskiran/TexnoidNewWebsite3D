@@ -63,7 +63,8 @@ export const FooterSection = ({ onOpenBookCall, onExplorePages }: FooterSectionP
         <div className="ftr-grid" data-reveal>
           <div className="ftr-brand">
             <button className="ftr-logo" onClick={scrollToTop} aria-label="Back to top">
-              Texnoid<sup>™</sup>
+              <img className="ftr-logo-mark" src="/assets/brand/logo-mark.png" alt="" />
+              <span>Texnoid<sup>™</sup></span>
             </button>
             <p className="ftr-mission">
               We design and build fast, beautiful websites and web apps, with a touch of 3D and
