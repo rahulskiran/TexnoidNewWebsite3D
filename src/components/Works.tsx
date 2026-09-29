@@ -1,11 +1,10 @@
 import './Works.css';
 
-// Placeholder projects: swap in Texnoid's real case studies and screenshots
 const WORKS = [
-  { name: 'NovaPay', type: 'Fintech Platform', image: '/assets/girl_bicycle.jpg' },
-  { name: 'Helixa Health', type: 'Website Design', image: '/assets/editorial_girl.jpg' },
-  { name: 'Northwind', type: 'E-commerce Store', image: '/assets/silhouette_portrait.jpg' },
-  { name: 'Wildfern', type: '3D Web Experience', image: '/assets/dog_grass.jpg' },
+  { name: 'Garage91', type: 'Shopify Store, Custom API Build', image: '/assets/works/garage91.jpg' },
+  { name: 'Trove', type: 'Fashion E-commerce Store', image: '/assets/works/trove.jpg' },
+  { name: 'Golden Key Properties', type: 'Real Estate Website', image: '/assets/works/goldenkey.jpg' },
+  { name: 'BathUrChoice', type: 'Service Business Website', image: '/assets/works/bathurchoice.jpg' },
 ];
 
 export const Works = () => (
